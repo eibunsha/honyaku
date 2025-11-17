@@ -10,11 +10,7 @@
       --brand-accent: #ffb300;
       --bg-light: #f5f5f7;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont,
@@ -22,198 +18,313 @@
       background: var(--bg-light);
       color: #222;
     }
-
-    /* ヒーローエリア ---------------------- */
-    .hero {
-      position: relative;
-      color: #fff;
-      padding: 40px 16px 70px;
-      overflow: hidden;
+    header {
+      padding: 16px 20px;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.7)),
-        url("https://placehold.co/1600x900?text=Miyagase+Dam");
-      /* ↑ ここを宮ヶ瀬ダムの写真URLに差し替えてください */
-      background-size: cover;
-      background-position: center;
-      transform: scale(1.05);
+    header h1 {
+      margin: 0;
+      font-size: 18px;
     }
-
-    .hero-inner {
-      position: relative;
+    header p {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: #666;
+    }
+    main {
       max-width: 960px;
       margin: 0 auto;
+      padding: 20px 16px 40px;
     }
-
+    .hero {
+      border-radius: 18px;
+      padding: 20px 18px 22px;
+      color: #fff;
+      background-image:
+        linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.85)),
+        url("https://placehold.co/1200x700?text=Miyagase+Dam");
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 18px;
+    }
     .hero-kicker {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.5);
-      font-size: 12px;
-      letter-spacing: 0.08em;
+      font-size: 11px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      opacity: 0.8;
+      margin-bottom: 4px;
     }
-
     .hero-title {
-      font-size: 26px;
-      line-height: 1.3;
-      margin: 0 0 8px;
+      margin: 0 0 6px;
+      font-size: 24px;
     }
-
     .hero-sub {
-      font-size: 14px;
+      margin: 0 0 10px;
+      font-size: 13px;
       max-width: 34em;
-      margin: 0 0 16px;
     }
-
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      align-items: center;
+      font-size: 11px;
     }
-
-    .lang-pill {
+    .pill {
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.45);
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.45);
-      font-size: 12px;
+      gap: 4px;
     }
-
-    .lang-dot {
+    .pill-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
       background: var(--brand-accent);
     }
-
-    .badge {
-      padding: 3px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.6);
-      font-size: 11px;
-    }
-
-    /* 本文レイアウト ---------------------- */
-    main {
-      max-width: 960px;
-      margin: -32px auto 32px;
-      padding: 0 16px 32px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .layout {
-      display: grid;
-      gap: 16px;
-    }
-
-    @media (min-width: 880px) {
-      .layout {
-        grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr);
-        align-items: start;
-      }
-    }
-
-    .card {
+    .section {
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
-      padding: 18px 18px 20px;
-      margin-bottom: 16px;
+      padding: 16px 18px 18px;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
     }
-
-    .card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
+    .section h2 {
+      margin: 0 0 8px;
+      font-size: 17px;
     }
-
-    .card-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin: 0;
-    }
-
-    .card-tag {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.04);
-      color: #555;
-    }
-
-    .card-body {
+    .section p {
+      margin: 0 0 8px;
       font-size: 14px;
-      line-height: 1.75;
-      color: #333;
+      line-height: 1.7;
     }
-
-    .card-body p {
-      margin: 0 0 10px;
-    }
-
-    .card-body ul {
-      margin: 6px 0 0 18px;
+    .section ul {
+      margin: 4px 0 0 18px;
       padding: 0;
+      font-size: 14px;
+      line-height: 1.6;
     }
-
-    .card-body li {
+    .section li {
       margin-bottom: 4px;
     }
-
-    .photo-grid {
-      display: grid;
-      gap: 8px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .photo-grid img {
-      width: 100%;
-      height: 110px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .photo-caption {
-      font-size: 11px;
-      color: #666;
-      margin-top: 6px;
-    }
-
     .info-list {
+      list-style: none;
       margin: 0;
       padding: 0;
-      list-style: none;
       font-size: 13px;
     }
-
     .info-list li {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 4px;
     }
-
     .info-label {
       min-width: 4em;
       font-weight: 600;
     }
-
-    .accent-box {
+    .speech-area {
       margin-top: 8px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: #f5fbff;
-      border
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    #speakButton {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 16px;
+      background: var(--brand-main);
+      color: #fff;
+      font-size: 14px;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      cursor: pointer;
+    }
+    #speakButton:hover { background: #0050a3; }
+    .speech-note {
+      font-size: 11px;
+      color: #666;
+    }
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: #777;
+      padding: 10px 0 16px;
+    }
+    @media (min-width: 720px) {
+      .hero-title { font-size: 28px; }
+      .hero-sub { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="pageTitle">宮ヶ瀬ダム 多言語ガイド</h1>
+    <p id="pageSub">スマートフォンの言語設定に合わせて、自動的に表示言語が切り替わります。</p>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-kicker" id="heroKicker">MIYAGASE LAKE AREA</div>
+      <h2 class="hero-title" id="heroTitle">宮ヶ瀬ダムと湖畔エリア</h2>
+      <p class="hero-sub" id="heroSub">
+        首都圏の水がめとして親しまれる宮ヶ瀬ダムと、その周辺に広がる自然豊かな湖畔エリアをご紹介します。
+      </p>
+      <div class="hero-meta">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span id="langLabel">現在の表示言語：日本語</span>
+        </div>
+        <div class="pill" id="seasonBadge">
+          四季折々の自然とイベント
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 id="overviewTitle">宮ヶ瀬ダムについて</h2>
+      <div id="overviewBody"></div>
+    </section>
+
+    <section class="section">
+      <h2 id="highlightsTitle">主な見どころ</h2>
+      <div id="highlightsBody"></div>
+    </section>
+
+    <section class="section">
+      <h2 id="accessTitle">アクセス</h2>
+      <div id="accessBody"></div>
+    </section>
+
+    <section class="section">
+      <h2 id="infoTitle">基本情報</h2>
+      <ul class="info-list">
+        <li>
+          <span class="info-label" id="infoLocationLabel">所在地</span>
+          <span id="infoLocationValue">神奈川県愛甲郡清川村 宮ヶ瀬湖周辺</span>
+        </li>
+        <li>
+          <span class="info-label" id="infoOpenLabel">開場時間</span>
+          <span id="infoOpenValue">各施設・季節により異なります</span>
+        </li>
+        <li>
+          <span class="info-label" id="infoSeasonLabel">おすすめ</span>
+          <span id="infoSeasonValue">新緑・紅葉・イルミネーション</span>
+        </li>
+      </ul>
+      <div class="speech-area">
+        <button id="speakButton">
+          <span>🔊</span><span id="speakLabel">この案内を音声で聞く</span>
+        </button>
+        <span class="speech-note" id="speechNote">
+          ※端末の音声読み上げ機能を利用して、短いガイド文を再生します。
+        </span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Powered by P栄文舎 / QR多言語案内システム
+  </footer>
+
+  <script>
+    // 言語検出
+    function detectLang() {
+      const langs = navigator.languages || [navigator.language || "ja"];
+      const supported = ["ja", "en", "fr", "ko", "zh-cn"];
+      for (const raw of langs) {
+        if (!raw) continue;
+        const lower = raw.toLowerCase();
+        const base = lower.split("-")[0];
+        if (supported.includes(lower)) return lower;
+        if (supported.includes(base)) return base;
+        if (base === "zh") return "zh-cn";
+      }
+      return "ja";
+    }
+
+    // 言語別テキスト
+    const TEXTS = {
+      "ja": {
+        langLabel: "現在の表示言語：日本語",
+        pageSub: "スマートフォンの言語設定に合わせて、自動的に表示言語が切り替わります。",
+        heroTitle: "宮ヶ瀬ダムと湖畔エリア",
+        heroSub:
+          "首都圏の水がめとして親しまれる宮ヶ瀬ダムと、その周辺に広がる自然豊かな湖畔エリアをご紹介します。",
+        overviewHtml:
+          "<p>宮ヶ瀬ダムは、首都圏に安定した水を供給するとともに、洪水調節や発電などの役割を担う多目的ダムです。ダム湖である宮ヶ瀬湖の周辺には、公園や遊歩道が整備され、家族連れやグループでゆっくり過ごせるエリアが広がっています。</p>",
+        highlightsHtml:
+          "<ul><li>ダム天端から眺めるパノラマビュー</li><li>迫力ある観光放流（実施日は公式情報をご確認ください）</li><li>湖畔園地や遊覧船、遊歩道などの散策コース</li></ul>",
+        accessHtml:
+          "<p>本厚木駅・橋本駅・相模原駅などから路線バスが運行されています。運行本数や経路は季節や曜日によって変わるため、事前に最新の時刻表をご確認ください。</p>",
+        speakLabel: "この案内を日本語で聞く",
+        speechNote:
+          "※観光の概要を短くまとめた文章を、日本語で読み上げます。",
+        speechText:
+          "宮ヶ瀬ダムは、首都圏の水源として重要な役割を担う多目的ダムです。周辺には公園や遊歩道が整備され、四季折々の自然やイベントを楽しむことができます。ダムの上から望む景色や観光放流、湖畔の散策など、ゆったりと過ごせるスポットがたくさんあります。"
+      },
+      "en": {
+        langLabel: "Current language: English",
+        pageSub: "The display language is automatically selected based on your phone settings.",
+        heroTitle: "Miyagase Dam & Lakeside Area",
+        heroSub:
+          "This guide introduces Miyagase Dam, a key water source for the Tokyo area, and the surrounding lakeside attractions.",
+        overviewHtml:
+          "<p>Miyagase Dam is a multi-purpose facility that supplies water and prevents floods in the metropolitan area. Around the reservoir, parks and promenades offer relaxing spaces for families and groups.</p>",
+        highlightsHtml:
+          "<ul><li>Panoramic views from the top of the dam</li><li>Spectacular water releases on selected days</li><li>Lakeside parks, walking paths and sightseeing boat cruises</li></ul>",
+        accessHtml:
+          "<p>Local buses operate from stations such as Hon-Atsugi, Hashimoto and Sagamihara. Timetables and routes vary, so please check the latest information before your visit.</p>",
+        speakLabel: "Listen to this guide in English",
+        speechNote: "A short introduction to Miyagase Dam will be read aloud in English.",
+        speechText:
+          "Miyagase Dam is an important water source for the Tokyo metropolitan area. The lakeside area offers parks, walking paths and seasonal events. From the top of the dam you can enjoy wide views of the lake and mountains."
+      }
+      // fr, ko, zh-cn はあとで追加できます
+    };
+
+    function applyLang(lang) {
+      const t = TEXTS[lang] || TEXTS["ja"];
+      document.getElementById("langLabel").textContent = t.langLabel;
+      document.getElementById("pageSub").textContent = t.pageSub;
+      document.getElementById("heroTitle").textContent = t.heroTitle;
+      document.getElementById("heroSub").textContent = t.heroSub;
+      document.getElementById("overviewBody").innerHTML = t.overviewHtml;
+      document.getElementById("highlightsBody").innerHTML = t.highlightsHtml;
+      document.getElementById("accessBody").innerHTML = t.accessHtml;
+      document.getElementById("speakLabel").textContent = t.speakLabel;
+      document.getElementById("speechNote").textContent = t.speechNote;
+
+      // 音声テキストを保存
+      window.currentSpeechText = t.speechText;
+      window.currentSpeechLang = lang === "en" ? "en-US" : "ja-JP";
+    }
+
+    // 音声読み上げ
+    function speak() {
+      if (!("speechSynthesis" in window)) {
+        alert("この端末では音声読み上げ機能を利用できません。");
+        return;
+      }
+      const text = window.currentSpeechText || "";
+      if (!text) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = window.currentSpeechLang || "ja-JP";
+      window.speechSynthesis.speak(utter);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const lang = detectLang();
+      applyLang(lang);
+      document.getElementById("speakButton").addEventListener("click", speak);
+    });
+  </script>
+</body>
+</html>
