@@ -5,96 +5,254 @@
   <title>宮ヶ瀬ダム 多言語ガイド</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
+    :root {
+      --brand-main: #0066cc;
+      --brand-accent: #ffb300;
+      --bg-light: #f5f5f7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans JP",
-        sans-serif;
       margin: 0;
-      padding: 0;
-      background: #f5f5f5;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "Noto Sans JP", sans-serif;
+      background: var(--bg-light);
       color: #222;
     }
 
-    header {
-      padding: 16px;
-      background: #0066cc;
-      color: white;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 20px;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 16px;
-    }
-
-    #langLabel {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 4px;
-    }
-
-    #guideText {
-      background: #ffffff;
-      border-radius: 8px;
-      padding: 12px 14px;
-      margin-bottom: 12px;
-      line-height: 1.6;
-      font-size: 14px;
-      border: 1px solid #ddd;
-    }
-
-    #speakButton {
-      padding: 10px 18px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-      background: #0078ff;
+    /* ヒーローエリア ---------------------- */
+    .hero {
+      position: relative;
       color: #fff;
-      cursor: pointer;
+      text-align: left;
+      padding: 40px 16px 60px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("https://placehold.co/1200x600?text=Miyagase+Dam");
+      /* ↑ ここを宮ヶ瀬の写真URLに差し替えてください */
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.55);
+      transform: scale(1.05);
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.5);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-size: 26px;
+      line-height: 1.3;
+      margin: 0 0 8px;
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      max-width: 34em;
+      margin: 0 0 16px;
+    }
+
+    .lang-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.45);
+      font-size: 12px;
+    }
+
+    .lang-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--brand-accent);
+    }
+
+    /* メイン ---------------------- */
+    main {
+      max-width: 960px;
+      margin: -32px auto 32px;
+      padding: 0 16px 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      padding: 20px 18px 22px;
       margin-bottom: 16px;
     }
 
-    #speakButton:hover {
-      background: #005fcc;
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
     }
 
-    iframe {
-      width: 100%;
-      height: 70vh;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      background: white;
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .card-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.04);
+      color: #555;
+    }
+
+    .card-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    .card-body p {
+      margin: 0 0 8px;
+    }
+
+    .card-body ul {
+      margin: 6px 0 0 18px;
+      padding: 0;
+    }
+
+    .card-body li {
+      margin-bottom: 3px;
+    }
+
+    /* 音声ボタン ---------------------- */
+    #speakButton {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 999px;
+      border: none;
+      background: var(--brand-main);
+      color: #fff;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    #speakButton:hover {
+      background: #0050a3;
+    }
+
+    #speakButton span.icon {
+      font-size: 16px;
     }
 
     footer {
       text-align: center;
-      font-size: 12px;
+      font-size: 11px;
       color: #777;
-      padding: 12px;
+      padding: 12px 0 18px;
+    }
+
+    @media (min-width: 720px) {
+      .hero {
+        padding: 56px 24px 80px;
+      }
+      .hero-title {
+        font-size: 32px;
+      }
+      .hero-sub {
+        font-size: 15px;
+      }
+      main {
+        padding: 0 24px 40px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1 id="pageTitle">宮ヶ瀬ダム 多言語ガイド</h1>
-  </header>
-  <main>
-    <div id="langLabel"></div>
-    <div id="guideText"></div>
-    <button id="speakButton">🔊 この案内を音声で聞く</button>
-    <iframe id="pdfFrame" title="宮ヶ瀬ダムガイドPDF"></iframe>
+  <!-- ヒーロー（上部の写真＋タイトル） -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-kicker" id="heroKicker">MIYAGASE LAKE AREA</div>
+      <h1 class="hero-title" id="heroTitle">宮ヶ瀬ダム 多言語ガイド</h1>
+      <p class="hero-sub" id="heroSub">
+        宮ヶ瀬ダム・湖畔エリアの見どころや、散策コース・アクセス情報を、
+        お使いのスマートフォンの言語に合わせてご案内します。
+      </p>
+      <div class="lang-pill" id="langPill">
+        <span class="lang-dot"></span>
+        <span id="langLabel">現在の表示言語：日本語</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 本文エリア -->
+  <main id="readableArea">
+    <!-- 概要カード -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title" id="secOverviewTitle">概要</h2>
+        <span class="card-tag" id="secOverviewTag">Overview</span>
+      </div>
+      <div class="card-body" id="secOverviewBody"></div>
+    </article>
+
+    <!-- 見どころカード -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title" id="secHighlightsTitle">見どころ</h2>
+        <span class="card-tag" id="secHighlightsTag">Highlights</span>
+      </div>
+      <div class="card-body" id="secHighlightsBody"></div>
+    </article>
+
+    <!-- アクセスカード -->
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title" id="secAccessTitle">アクセス</h2>
+        <span class="card-tag" id="secAccessTag">Access</span>
+      </div>
+      <div class="card-body" id="secAccessBody"></div>
+    </article>
+
+    <!-- 音声ボタン -->
+    <button id="speakButton">
+      <span class="icon">🔊</span>
+      <span id="speakLabel">この案内を音声で聞く</span>
+    </button>
   </main>
+
   <footer>
     Powered by P栄文舎 / QR多言語ガイド
   </footer>
 
   <script>
-    // ブラウザから言語を取得して、ja / en / fr / ko / zh-cn のいずれかに正規化
+    // --- 言語検出 ---
     function detectLang() {
       const langs = navigator.languages || [navigator.language || "ja"];
       const supported = ["ja", "en", "fr", "ko", "zh-cn"];
@@ -111,66 +269,143 @@
       return "ja";
     }
 
-    // 言語ごとのテキスト
+    // --- 多言語テキスト定義 ---
     const TEXTS = {
       "ja": {
-        title: "宮ヶ瀬ダム 多言語ガイド",
-        label: "現在の表示言語：日本語",
-        guide:
-          "このページでは、お使いのスマートフォンの言語設定に合わせて、「宮ヶ瀬ダム」のご案内PDFを自動表示します。下のPDFを拡大してご覧ください。音声ボタンを押すと、この案内文を日本語で読み上げます。"
+        heroTitle: "宮ヶ瀬ダム 多言語ガイド",
+        heroSub:
+          "宮ヶ瀬ダムと湖畔エリアの見どころ、季節ごとの楽しみ方、周辺施設をご紹介します。",
+        langLabel: "現在の表示言語：日本語",
+        secOverviewTitle: "宮ヶ瀬ダムについて",
+        secOverviewTag: "概要",
+        secOverviewHtml:
+          "<p>宮ヶ瀬ダムは、首都圏の水がめとして建設された多目的ダムです。ダム湖周辺には、公園や遊歩道、季節のイベント会場が整備されており、一年を通して多くの方が訪れます。</p>",
+        secHighlightsTitle: "主な見どころ",
+        secHighlightsTag: "見どころ",
+        secHighlightsHtml:
+          "<ul><li>ダム天端（ダムの上）から眺める湖と山並み</li><li>観光放流（実施日には迫力ある放水を見学できます）</li><li>宮ヶ瀬湖畔園地・けやき広場・遊覧船</li></ul>",
+        secAccessTitle: "アクセス",
+        secAccessTag: "Access",
+        secAccessHtml:
+          "<p>小田急線 本厚木駅・JR橋本駅・相模原駅などから路線バスが運行しています。季節や曜日により運行本数が変わりますので、事前に各社の時刻表をご確認ください。</p>",
+        speakLabel: "この案内を日本語で聞く"
       },
       "en": {
-        title: "Miyagase Dam Multilingual Guide",
-        label: "Current language: English",
-        guide:
-          "This page automatically shows the Miyagase Dam guide PDF that best matches your device language. Please zoom in on the PDF below to read the details. Tap the speaker button to listen to this summary in English."
+        heroTitle: "Miyagase Dam Multilingual Guide",
+        heroSub:
+          "Discover Miyagase Dam, the lakeside area, seasonal attractions, and nearby facilities.",
+        langLabel: "Current language: English",
+        secOverviewTitle: "About Miyagase Dam",
+        secOverviewTag: "Overview",
+        secOverviewHtml:
+          "<p>Miyagase Dam is a multi-purpose dam that supplies water and helps control floods in the greater Tokyo area. Around the lake, you will find parks, promenades, and event spaces that welcome visitors throughout the year.</p>",
+        secHighlightsTitle: "Highlights",
+        secHighlightsTag: "Highlights",
+        secHighlightsHtml:
+          "<ul><li>Panoramic views from the top of the dam</li><li>Spectacular water release events on selected days</li><li>Lakeside parks, promenades, and sightseeing boat cruises</li></ul>",
+        secAccessTitle: "Access",
+        secAccessTag: "Access",
+        secAccessHtml:
+          "<p>Local buses run from major stations such as Hon-Atsugi, Hashimoto, and Sagamihara. Service frequency varies by season and day of the week, so please check the latest timetable before your visit.</p>",
+        speakLabel: "Listen to this guide in English"
       },
       "fr": {
-        title: "Guide multilingue du barrage de Miyagase",
-        label: "Langue affichée : français",
-        guide:
-          "Cette page affiche automatiquement le guide PDF du barrage de Miyagase correspondant à la langue de votre appareil. Agrandissez le PDF ci-dessous pour lire les détails. Appuyez sur le bouton haut-parleur pour écouter ce résumé en français."
+        heroTitle: "Guide multilingue du barrage de Miyagase",
+        heroSub:
+          "Découvrez le barrage de Miyagase, les rives du lac, les sites à ne pas manquer et les équipements environnants.",
+        langLabel: "Langue affichée : français",
+        secOverviewTitle: "À propos du barrage de Miyagase",
+        secOverviewTag: "Aperçu",
+        secOverviewHtml:
+          "<p>Le barrage de Miyagase est un barrage polyvalent qui alimente en eau la région de Tokyo et contribue à la prévention des crues. Autour du lac, des parcs, promenades et lieux d'événements accueillent les visiteurs tout au long de l'année.</p>",
+        secHighlightsTitle: "Points forts",
+        secHighlightsTag: "Points forts",
+        secHighlightsHtml:
+          "<ul><li>Vue panoramique depuis le couronnement du barrage</li><li>Spectaculaires lâchers d'eau certains jours</li><li>Parcs en bord de lac, promenades et bateaux de croisière</li></ul>",
+        secAccessTitle: "Accès",
+        secAccessTag: "Accès",
+        secAccessHtml:
+          "<p>Des bus locaux partent des gares principales telles que Hon-Atsugi, Hashimoto et Sagamihara. La fréquence varie selon la saison et le jour de la semaine ; merci de vérifier les horaires à l'avance.</p>",
+        speakLabel: "Écouter ce guide en français"
       },
       "ko": {
-        title: "미야가세 댐 다국어 안내",
-        label: "현재 표시 언어: 한국어",
-        guide:
-          "이 페이지는 사용하시는 스마트폰 언어 설정에 맞춰 미야가세 댐 안내 PDF를 자동으로 표시합니다. 아래 PDF를 확대하여 자세한 내용을 확인하세요. 스피커 버튼을 누르면 이 안내문을 한국어로 읽어 줍니다."
+        heroTitle: "미야가세 댐 다국어 안내",
+        heroSub:
+          "미야가세 댐과 호반 지역의 볼거리, 계절별 즐길 거리, 주변 시설을 소개합니다.",
+        langLabel: "현재 표시 언어: 한국어",
+        secOverviewTitle: "미야가세 댐 소개",
+        secOverviewTag: "개요",
+        secOverviewHtml:
+          "<p>미야가세 댐은 수도권에 물을 공급하고 홍수를 조절하기 위해 건설된 다목적 댐입니다. 호수 주변에는 공원과 산책로, 계절별 이벤트 장소가 조성되어 있어 연중 많은 사람들이 찾습니다.</p>",
+        secHighlightsTitle: "주요 볼거리",
+        secHighlightsTag: "볼거리",
+        secHighlightsHtml:
+          "<ul><li>댐 정상에서 바라보는 호수와 산의 경치</li><li>일정일에 실시되는 관광 방류</li><li>호반 공원, 광장, 유람선</li></ul>",
+        secAccessTitle: "오시는 길",
+        secAccessTag: "Access",
+        secAccessHtml:
+          "<p>혼아츠기역, 하시모토역, 사가미하라역 등에서 버스가 운행됩니다. 계절과 요일에 따라 운행 횟수가 달라지므로, 방문 전에 최신 시간표를 확인해 주세요.</p>",
+        speakLabel: "이 안내를 한국어로 듣기"
       },
       "zh-cn": {
-        title: "宫ヶ瀬大坝多语言指南",
-        label: "当前显示语言：简体中文",
-        guide:
-          "本页面会根据您手机的语言设置，自动显示《宫ヶ瀬大坝》导览PDF。请放大下方的PDF查看详细信息。点击扬声器按钮，可用中文朗读本说明。"
+        heroTitle: "宫ヶ瀬大坝多语言指南",
+        heroSub:
+          "为您介绍宫ヶ瀬大坝及湖畔地区的看点、四季风景和周边设施。",
+        langLabel: "当前显示语言：简体中文",
+        secOverviewTitle: "关于宫ヶ瀬大坝",
+        secOverviewTag: "概况",
+        secOverviewHtml:
+          "<p>宫ヶ瀬大坝是为首都圈提供用水并兼具防洪功能的多用途大坝。大坝湖周边设有公园、散步道以及活动场地，一年四季吸引众多游客前来游览。</p>",
+        secHighlightsTitle: "主要看点",
+        secHighlightsTag: "看点",
+        secHighlightsHtml:
+          "<ul><li>从大坝顶部眺望湖面与群山</li><li>特定日期举行的观光放水活动</li><li>湖畔公园、广场以及游船</li></ul>",
+        secAccessTitle: "交通方式",
+        secAccessTag: "Access",
+        secAccessHtml:
+          "<p>从本厚木站、桥本站、相模原站等有巴士前往宫ヶ瀬湖区域。班次会因季节与日期有所变化，建议事先确认最新时刻表。</p>",
+        speakLabel: "用中文朗读本指南"
       }
     };
 
-    // 言語に応じて画面とPDFをセット
     function setupPage() {
-      const lang = detectLang(); // ja / en / fr / ko / zh-cn
+      const lang = detectLang();
       const htmlLang = lang === "zh-cn" ? "zh-CN" : lang;
       document.documentElement.lang = htmlLang;
 
-      const text = TEXTS[lang] || TEXTS["ja"];
+      const t = TEXTS[lang] || TEXTS["ja"];
 
-      document.getElementById("pageTitle").innerText = text.title;
-      document.getElementById("langLabel").innerText = text.label;
-      document.getElementById("guideText").innerText = text.guide;
+      document.getElementById("heroTitle").innerText = t.heroTitle;
+      document.getElementById("heroSub").innerText = t.heroSub;
+      document.getElementById("langLabel").innerText = t.langLabel;
 
-      // PDFのURLを設定（Flask側の /spot_miyagase/pdf/<lang> を呼ぶ）
-      const pdfLang = lang; // ja / en / fr / ko / zh-cn
-      document.getElementById("pdfFrame").src =
-        "/spot_miyagase/pdf/" + pdfLang;
+      document.getElementById("secOverviewTitle").innerText =
+        t.secOverviewTitle;
+      document.getElementById("secOverviewTag").innerText = t.secOverviewTag;
+      document.getElementById("secOverviewBody").innerHTML =
+        t.secOverviewHtml;
+
+      document.getElementById("secHighlightsTitle").innerText =
+        t.secHighlightsTitle;
+      document.getElementById("secHighlightsTag").innerText =
+        t.secHighlightsTag;
+      document.getElementById("secHighlightsBody").innerHTML =
+        t.secHighlightsHtml;
+
+      document.getElementById("secAccessTitle").innerText = t.secAccessTitle;
+      document.getElementById("secAccessTag").innerText = t.secAccessTag;
+      document.getElementById("secAccessBody").innerHTML = t.secAccessHtml;
+
+      document.getElementById("speakLabel").innerText = t.speakLabel;
     }
 
-    // 音声読み上げ
     function setupSpeech() {
       const btn = document.getElementById("speakButton");
       btn.addEventListener("click", function () {
-        const text = document.getElementById("guideText").innerText;
+        const area = document.getElementById("readableArea");
+        const text = area.innerText.replace(/\s+/g, " ").trim();
         if (!text) return;
 
-        // すでに読み上げ中なら一度止める
         if (window.speechSynthesis.speaking) {
           window.speechSynthesis.cancel();
         }
