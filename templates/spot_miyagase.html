@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>宮ヶ瀬ダム 多言語ガイド</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans JP",
+        sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      padding: 16px;
+      background: #0066cc;
+      color: white;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    #langLabel {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    #guideText {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+      font-size: 14px;
+      border: 1px solid #ddd;
+    }
+
+    #speakButton {
+      padding: 10px 18px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background: #0078ff;
+      color: #fff;
+      cursor: pointer;
+      margin-bottom: 16px;
+    }
+
+    #speakButton:hover {
+      background: #005fcc;
+    }
+
+    iframe {
+      width: 100%;
+      height: 70vh;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: white;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      padding: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="pageTitle">宮ヶ瀬ダム 多言語ガイド</h1>
+  </header>
+  <main>
+    <div id="langLabel"></div>
+    <div id="guideText"></div>
+    <button id="speakButton">🔊 この案内を音声で聞く</button>
+    <iframe id="pdfFrame" title="宮ヶ瀬ダムガイドPDF"></iframe>
+  </main>
+  <footer>
+    Powered by P栄文舎 / QR多言語ガイド
+  </footer>
+
+  <script>
+    // ブラウザから言語を取得して、ja / en / fr / ko / zh-cn のいずれかに正規化
+    function detectLang() {
+      const langs = navigator.languages || [navigator.language || "ja"];
+      const supported = ["ja", "en", "fr", "ko", "zh-cn"];
+
+      for (const raw of langs) {
+        if (!raw) continue;
+        const lower = raw.toLowerCase(); // fr-fr
+        const base = lower.split("-")[0]; // fr
+
+        if (supported.includes(lower)) return lower;
+        if (supported.includes(base)) return base;
+        if (base === "zh") return "zh-cn";
+      }
+      return "ja";
+    }
+
+    // 言語ごとのテキスト
+    const TEXTS = {
+      "ja": {
+        title: "宮ヶ瀬ダム 多言語ガイド",
+        label: "現在の表示言語：日本語",
+        guide:
+          "このページでは、お使いのスマートフォンの言語設定に合わせて、「宮ヶ瀬ダム」のご案内PDFを自動表示します。下のPDFを拡大してご覧ください。音声ボタンを押すと、この案内文を日本語で読み上げます。"
+      },
+      "en": {
+        title: "Miyagase Dam Multilingual Guide",
+        label: "Current language: English",
+        guide:
+          "This page automatically shows the Miyagase Dam guide PDF that best matches your device language. Please zoom in on the PDF below to read the details. Tap the speaker button to listen to this summary in English."
+      },
+      "fr": {
+        title: "Guide multilingue du barrage de Miyagase",
+        label: "Langue affichée : français",
+        guide:
+          "Cette page affiche automatiquement le guide PDF du barrage de Miyagase correspondant à la langue de votre appareil. Agrandissez le PDF ci-dessous pour lire les détails. Appuyez sur le bouton haut-parleur pour écouter ce résumé en français."
+      },
+      "ko": {
+        title: "미야가세 댐 다국어 안내",
+        label: "현재 표시 언어: 한국어",
+        guide:
+          "이 페이지는 사용하시는 스마트폰 언어 설정에 맞춰 미야가세 댐 안내 PDF를 자동으로 표시합니다. 아래 PDF를 확대하여 자세한 내용을 확인하세요. 스피커 버튼을 누르면 이 안내문을 한국어로 읽어 줍니다."
+      },
+      "zh-cn": {
+        title: "宫ヶ瀬大坝多语言指南",
+        label: "当前显示语言：简体中文",
+        guide:
+          "本页面会根据您手机的语言设置，自动显示《宫ヶ瀬大坝》导览PDF。请放大下方的PDF查看详细信息。点击扬声器按钮，可用中文朗读本说明。"
+      }
+    };
+
+    // 言語に応じて画面とPDFをセット
+    function setupPage() {
+      const lang = detectLang(); // ja / en / fr / ko / zh-cn
+      const htmlLang = lang === "zh-cn" ? "zh-CN" : lang;
+      document.documentElement.lang = htmlLang;
+
+      const text = TEXTS[lang] || TEXTS["ja"];
+
+      document.getElementById("pageTitle").innerText = text.title;
+      document.getElementById("langLabel").innerText = text.label;
+      document.getElementById("guideText").innerText = text.guide;
+
+      // PDFのURLを設定（Flask側の /spot_miyagase/pdf/<lang> を呼ぶ）
+      const pdfLang = lang; // ja / en / fr / ko / zh-cn
+      document.getElementById("pdfFrame").src =
+        "/spot_miyagase/pdf/" + pdfLang;
+    }
+
+    // 音声読み上げ
+    function setupSpeech() {
+      const btn = document.getElementById("speakButton");
+      btn.addEventListener("click", function () {
+        const text = document.getElementById("guideText").innerText;
+        if (!text) return;
+
+        // すでに読み上げ中なら一度止める
+        if (window.speechSynthesis.speaking) {
+          window.speechSynthesis.cancel();
+        }
+
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = document.documentElement.lang || "ja-JP";
+        window.speechSynthesis.speak(u);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      setupPage();
+      setupSpeech();
+    });
+  </script>
+</body>
+</html>
